@@ -4,6 +4,7 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
     :recoverable, :rememberable, :trackable, :validatable, :omniauthable,
     :omniauth_providers => [:linkedin]
+
   def self.connect_to_linkedin(auth, signed_in_resource=nil)
     user = User.where(:provider => auth.provider, :uid => auth.uid).first
     if user
@@ -14,7 +15,7 @@ class User < ActiveRecord::Base
         return registered_user
       else
 
-        user = User.create(name:auth.info.first_name,
+        user = User.create(name:auth.info.name,
                            provider:auth.provider,
                            uid:auth.uid,
                            email:auth.info.email,
