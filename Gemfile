@@ -15,6 +15,10 @@ gem 'haml-rails'
 gem 'pg'
 gem 'simple_form'
 gem 'thin'
+gem 'omniauth'
+gem 'omniauth-linkedin'
+gem 'font-awesome-sass'
+
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller', :platforms=>[:mri_21]
@@ -27,16 +31,26 @@ group :development do
   gem 'rb-fsevent', :require=>false
   gem 'rb-inotify', :require=>false
 end
+
 group :development, :test do
   gem 'factory_girl_rails'
   gem 'pry-rails'
   gem 'pry-rescue'
   gem 'rspec-rails'
+  gem 'mailcatcher'
 end
+
 group :test do
   gem 'capybara'
   gem 'database_cleaner'
   gem 'faker'
   gem 'launchy'
   gem 'selenium-webdriver'
+  gem 'capybara-email'
+end
+
+group :production do
+  gem 'rails_12factor'
+  gem 'heroku_secrets', github: 'alexpeattie/heroku_secrets'
+  gem 'mandrill'
 end

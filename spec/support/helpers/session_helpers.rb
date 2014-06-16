@@ -2,9 +2,10 @@ module Features
   module SessionHelpers
     def sign_up_with(email, password, confirmation)
       visit new_user_registration_path
+      # puts page.body
       fill_in 'Email', with: email
-      fill_in 'Password', with: password
-      fill_in 'Password confirmation', :with => confirmation
+      fill_in 'user_password', with: password
+      fill_in 'user_password_confirmation', :with => confirmation
       click_button 'Sign up'
     end
 
