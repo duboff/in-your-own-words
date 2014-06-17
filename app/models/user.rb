@@ -1,4 +1,8 @@
+require linkedin-oauth2
+
 class User < ActiveRecord::Base
+
+  attr_accessor :client
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -15,6 +19,8 @@ class User < ActiveRecord::Base
         return registered_user
       else
 
+        self.client = LinkedIn::Client.new(Rails.application.secrets[:linkedin_key], Rails.application.secrets[:linkedin_token],auth.access_token)
+
         user = User.create(name:auth.info.name,
                            picture_url:auth.info.image,
                            headline:auth.info.headline,
@@ -28,4 +34,9 @@ class User < ActiveRecord::Base
 
     end
   end
+
+  def profile
+    self.client.profile
+  end
+
 end
