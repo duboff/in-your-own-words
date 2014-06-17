@@ -23,11 +23,20 @@ feature 'User profile page', :devise do
   end
 
   it 'user profile has an image' do
-
     visit user_path(user)
     expect(page).to have_css '.user-photo'
     expect(page.find('.user-photo')['src']).to have_content 'example.com/img.jpg'
+  end
+  it 'user profile has an image' do
+    visit user_path(user)
+    expect(page).to have_css '.user-photo'
+    expect(page.find('.user-photo')['src']).to have_content 'example.com/img.jpg'
+  end
 
+  it 'user profile has a headline' do
+    visit user_path(user)
+    expect(page).to have_css '.headline'
+    expect(page).to have_content 'Amazing graphic designer'
   end
 
   # Scenario: User cannot see another user's profile
