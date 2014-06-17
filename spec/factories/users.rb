@@ -5,5 +5,6 @@ FactoryGirl.define do
     password "please123"
     picture_url 'example.com/img.jpg'
     headline 'Amazing graphic designer'
+    location 'London, UK'
   end
 end

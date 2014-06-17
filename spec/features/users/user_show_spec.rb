@@ -38,6 +38,11 @@ feature 'User profile page', :devise do
     expect(page).to have_css '.headline'
     expect(page).to have_content 'Amazing graphic designer'
   end
+  it 'user profile has a location' do
+    visit user_path(user)
+    expect(page).to have_css '.location'
+    expect(page).to have_content 'London, UK'
+  end
 
   # Scenario: User cannot see another user's profile
   #   Given I am signed in

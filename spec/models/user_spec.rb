@@ -1,6 +1,9 @@
 describe User do
 
-  before(:each) { @user = User.new(email: 'user@example.com', picture_url: 'example.com/img.jpg', headline: 'Amazing graphic designer') }
+  before(:each) { @user = User.new(email: 'user@example.com',
+                                   picture_url: 'example.com/img.jpg',
+                                   headline: 'Amazing graphic designer',
+                                   location: 'London, UK') }
 
   subject { @user }
   context 'email' do
@@ -22,6 +25,13 @@ describe User do
 
     it "#headline returns a string" do
       expect(@user.headline).to match 'Amazing graphic designer'
+    end
+  end
+  context 'location' do
+    it { should respond_to(:location) }
+
+    it "#location returns a string" do
+      expect(@user.location).to match 'London, UK'
     end
   end
 end

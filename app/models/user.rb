@@ -17,6 +17,8 @@ class User < ActiveRecord::Base
 
         user = User.create(name:auth.info.name,
                            picture_url:auth.info.image,
+                           headline:auth.info.headline,
+                           location:auth.info.location,
                            provider:auth.provider,
                            uid:auth.uid,
                            email:auth.info.email,
