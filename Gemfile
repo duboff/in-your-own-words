@@ -16,8 +16,9 @@ gem 'pg'
 gem 'simple_form'
 gem 'thin'
 gem 'omniauth'
-gem 'omniauth-linkedin'
+gem 'omniauth-linkedin-oauth2'
 gem 'font-awesome-sass'
+gem 'linkedin-oauth2'
 
 group :development do
   gem 'better_errors'
