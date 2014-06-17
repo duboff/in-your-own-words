@@ -7,4 +7,6 @@
   =image_tag @user.picture_url, class: "user-photo"
 %p.headline
   =@user.headline
+%p.location
+  =@user.location
 = link_to 'Edit account', edit_user_path
