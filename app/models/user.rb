@@ -24,7 +24,7 @@ class User < ActiveRecord::Base
 
         # p auth.raw_info
 
-        p auth.extra.raw_info.skills.values
+        p auth.extra.raw_info.skills.values.last
 
         puts '*' * 50
         user = User.create(name:auth.info.name,
@@ -34,7 +34,7 @@ class User < ActiveRecord::Base
                            provider:auth.provider,
                            uid:auth.uid,
                            email:auth.info.email,
-                           skill_names:auth.extra.raw_info.skills.values.map {|value| value.skill.name}.join(' '),
+                           skill_names:auth.extra.raw_info.skills.values.last.map {|value| value.skill.name}.join(' '),
                            password:Devise.friendly_token[0,20]
                            )
       end
