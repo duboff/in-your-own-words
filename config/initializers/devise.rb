@@ -233,7 +233,7 @@ Devise.setup do |config|
   config.omniauth :linkedin, Rails.application.secrets[:linkedin_key], Rails.application.secrets[:linkedin_token],
   {
     scope: 'r_fullprofile r_emailaddress',
-    fields: ['id', 'email-address', 'first-name', 'last-name', 'location', 'headline', 'skills', 'picture_url']
+    fields: ['id', 'email-address', 'first-name', 'last-name', 'location', 'headline', 'skills', 'picture-url']
   }
 
   # ==> Warden configuration

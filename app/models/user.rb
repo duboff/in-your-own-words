@@ -30,7 +30,7 @@ class User < ActiveRecord::Base
                            provider:auth.provider,
                            uid:auth.uid,
                            email:auth.info.email,
-                           skill_names:auth.raw_info.skills.values.map {|value| value.skill.name}.join(' '),
+                           skill_names:auth.raw_info['skills'].values.map {|value| value.skill.name}.join(' '),
                            password:Devise.friendly_token[0,20]
                            )
       end
