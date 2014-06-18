@@ -17,16 +17,6 @@ class User < ActiveRecord::Base
       if registered_user
         return registered_user
       else
-
-        # client = LinkedIn::Client.new(Rails.application.secrets[:linkedin_key], Rails.application.secrets[:linkedin_token],auth.access_token)
-        puts '*' * 50
-        # p auth.to_h['raw_info']
-
-        # p auth.raw_info
-
-        p auth.extra.raw_info.skills.values.last
-
-        puts '*' * 50
         user = User.create(name:auth.info.name,
                            picture_url:auth.info.image,
                            headline:auth.info.description,
@@ -43,7 +33,8 @@ class User < ActiveRecord::Base
   end
 
   def skill_names=(skill_names)
-    skill_names.split(' ').uniq.each do |skill_name|
+    p skill_names
+    skill_names.each do |skill_name|
       skill = Skill.find_or_create_by(name: skill_name.downcase)
       skills << skill
     end
@@ -52,9 +43,5 @@ class User < ActiveRecord::Base
   def skill_names
     skills.map(&:name)
   end
-
-  # def profile
-  #   self.client.profile
-  # end
 
 end
