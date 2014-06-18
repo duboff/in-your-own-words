@@ -48,6 +48,7 @@ group :test do
   gem 'launchy'
   gem 'selenium-webdriver'
   gem 'capybara-email'
+  gem 'shoulda-matchers'
 end
 
 group :production do
