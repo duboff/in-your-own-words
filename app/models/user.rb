@@ -20,8 +20,8 @@ class User < ActiveRecord::Base
 
         # self.client = LinkedIn::Client.new(Rails.application.secrets[:linkedin_key], Rails.application.secrets[:linkedin_token],auth.access_token)
         puts '*' * 50
-        p auth['raw_info']
-        p auth
+        p auth.instance_methods
+        # p auth
         puts '*' * 50
         user = User.create(name:auth.info.name,
                            picture_url:auth.info.image,
