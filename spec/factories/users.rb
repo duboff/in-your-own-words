@@ -6,5 +6,6 @@ FactoryGirl.define do
     picture_url 'example.com/img.jpg'
     headline 'Amazing graphic designer'
     location 'London, UK'
+    skill_names 'ruby rails'
   end
 end

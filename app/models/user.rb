@@ -37,6 +37,17 @@ class User < ActiveRecord::Base
     end
   end
 
+  def skill_names=(skill_names)
+    skill_names.split(' ').uniq.each do |skill_name|
+      skill = Skill.find_or_create_by(name: skill_name.downcase)
+      skills << skill
+    end
+  end
+
+  def skill_names
+    skills.map(&:name)
+  end
+
   # def profile
   #   self.client.profile
   # end
