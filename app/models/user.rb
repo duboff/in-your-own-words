@@ -18,10 +18,10 @@ class User < ActiveRecord::Base
         return registered_user
       else
 
-        # self.client = LinkedIn::Client.new(Rails.application.secrets[:linkedin_key], Rails.application.secrets[:linkedin_token],auth.access_token)
+        self.client = LinkedIn::Client.new(Rails.application.secrets[:linkedin_key], Rails.application.secrets[:linkedin_token],auth.access_token)
         puts '*' * 50
-        p auth.instance_methods
-        # p auth
+        p auth.public_methods
+        p client
         puts '*' * 50
         user = User.create(name:auth.info.name,
                            picture_url:auth.info.image,
@@ -30,7 +30,7 @@ class User < ActiveRecord::Base
                            provider:auth.provider,
                            uid:auth.uid,
                            email:auth.info.email,
-                           skill_names:auth.raw_info['skills'].values.map {|value| value.skill.name}.join(' '),
+                           skill_names:authraw_info['skills'].values.map {|value| value.skill.name}.join(' '),
                            password:Devise.friendly_token[0,20]
                            )
       end
