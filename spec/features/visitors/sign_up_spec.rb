@@ -58,4 +58,9 @@ feature 'Sign Up', :devise do
     expect(page).to have_content "doesn't match Password"
   end
 
+  it 'visitor is redirected to profile edit page on sign up' do
+    sign_up_with('test@example.com', 'please123', 'please123')
+    expect(current_path).to eq edit_user_path(User.last)
+  end
+
 end
