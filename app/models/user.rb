@@ -24,7 +24,7 @@ class User < ActiveRecord::Base
         # puts '*' * 50
         user = User.create(name:auth.info.name,
                            picture_url:auth.info.image,
-                           headline:auth.info.headline,
+                           headline:auth.info.description,
                            location:auth.info.location.name,
                            provider:auth.provider,
                            uid:auth.uid,
