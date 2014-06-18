@@ -24,7 +24,7 @@ class User < ActiveRecord::Base
 
         # p auth.raw_info
 
-        p auth.extra.raw_info
+        p auth.extra.raw_info.skills.values
 
         puts '*' * 50
         user = User.create(name:auth.info.name,
