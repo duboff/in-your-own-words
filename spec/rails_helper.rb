@@ -7,6 +7,7 @@ require 'rspec/rails'
 require 'capybara/rspec'
 require 'database_cleaner'
 require 'capybara/email/rspec'
+require 'shoulda/matchers'
 
 include Warden::Test::Helpers
 include ActionDispatch::TestProcess
