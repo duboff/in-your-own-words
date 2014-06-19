@@ -18,5 +18,4 @@ class UsersController < ApplicationController
     @user.update! params[:user].permit(:name)
     redirect_to user_path(@user)
   end
-
 end
