@@ -33,7 +33,6 @@ class User < ActiveRecord::Base
   end
 
   def skill_names=(skill_names)
-    p skill_names
     skill_names.each do |skill_name|
       skill = Skill.find_or_create_by(name: skill_name.downcase)
       skills << skill
