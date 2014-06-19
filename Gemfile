@@ -19,6 +19,8 @@ gem 'omniauth'
 gem 'omniauth-linkedin-oauth2'
 gem 'font-awesome-sass'
 gem 'linkedin-oauth2'
+gem 'carrierwave'
+gem "fog"
 
 group :development do
   gem 'better_errors'
