@@ -34,4 +34,11 @@ describe User do
       expect(@user.location).to match 'London, UK'
     end
   end
+  context 'cv' do
+    it { should respond_to(:cv) }
+    it "#cv#url returns a string" do
+      @user.cv = Rails.root.join('spec/support/test_files/cv.doc').open
+      expect(@user.cv.identifier).to match 'cv.doc'
+    end
+  end
 end

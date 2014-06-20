@@ -7,5 +7,6 @@ FactoryGirl.define do
     headline 'Amazing graphic designer'
     location 'London, UK'
     skill_names ['ruby', 'rails']
+    cv Rails.root.join('spec/support/test_files/cv.doc').open
   end
 end
