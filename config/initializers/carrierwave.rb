@@ -5,7 +5,7 @@ CarrierWave.configure do |config|
     :aws_secret_access_key  => Rails.application.secrets[:aws_secret_key],                        # required
     :region                 => 'us-west-2',              # optional, defaults to 'us-east-1'
     :host                   => 's3-us-west-2.amazonaws.com',
-    :endpoint               => 'https://s3-us-west-2.amazonaws.com/'
+    :endpoint               => 'https://s3-us-west-2.amazonaws.com'
   }
   if Rails.env.test? || Rails.env.cucumber?
     config.storage = :file

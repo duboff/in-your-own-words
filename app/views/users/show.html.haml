@@ -11,4 +11,7 @@
   =@user.skill_names.join(' ')
 %p.location
   =@user.location
+%p.cv
+  = link_to 'CV', @user.cv.url
+
 = link_to 'Edit account', edit_user_path
