@@ -15,7 +15,7 @@ feature 'User edit', :devise do
   #   Given I am signed in
   #   When I change my email address
   #   Then I see an account updated message
-  scenario 'user changes email address' do
+  scenario 'user changes name' do
     user = FactoryGirl.create(:user)
     login_as(user, :scope => :user)
     visit edit_user_path(user)
@@ -23,6 +23,8 @@ feature 'User edit', :devise do
     click_button 'Save'
     expect(page).to have_content 'bla'
   end
+
+
 
   # Scenario: User cannot edit another user's profile
   #   Given I am signed in
