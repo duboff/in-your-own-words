@@ -28,6 +28,7 @@ class User < ActiveRecord::Base
                            email:auth.info.email,
                            skill_names:auth.extra.raw_info.skills.values.last.map {|value| value.skill.name},
                            password:Devise.friendly_token[0,20]
+
                            )
       end
     end

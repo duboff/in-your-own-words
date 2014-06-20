@@ -10,4 +10,9 @@ class RegistrationsController < Devise::RegistrationsController
     edit_user_path(user)
   end
 
+  def after_sign_in_path_for(user)
+    edit_user_path(user)
+  end
+
+
 end
