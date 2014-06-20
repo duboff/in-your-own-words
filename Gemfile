@@ -21,6 +21,7 @@ gem 'font-awesome-sass'
 gem 'linkedin-oauth2'
 gem 'carrierwave'
 gem "fog"
+gem 'heroku_secrets', github: 'alexpeattie/heroku_secrets'
 
 group :development do
   gem 'better_errors'
@@ -55,6 +56,6 @@ end
 
 group :production do
   gem 'rails_12factor'
-  gem 'heroku_secrets', github: 'alexpeattie/heroku_secrets'
+
   gem 'mandrill'
 end

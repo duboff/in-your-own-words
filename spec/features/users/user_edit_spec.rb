@@ -20,7 +20,7 @@ feature 'User edit', :devise do
     login_as(user, :scope => :user)
     visit edit_user_path(user)
     fill_in 'Name', :with => 'bla'
-    click_button 'Update'
+    click_button 'Save'
     expect(page).to have_content 'bla'
   end
 

@@ -1,8 +1,10 @@
 .authform
   %h3
     Edit #{@user.email}
-  = form_for(@user, :html => { :method => :put, :role => 'form'}) do |f|
+  = simple_form_for(@user, :html => { method: :put, multipart: true, role: 'form', class: 'form-vertical'}) do |f|
     .form-group
       = f.label :name
-      = f.text_field :name, :autofocus => true, class: 'form-control' 
-    = f.submit 'Update', :class => 'button right'
+      = f.input :name, :autofocus => true, class: 'form-control'
+    .form-group
+      = f.file_field :cv 
+    = f.button :submit, 'Save profile', :class => 'btn-primary'

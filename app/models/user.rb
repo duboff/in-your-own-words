@@ -8,6 +8,8 @@ class User < ActiveRecord::Base
     :recoverable, :rememberable, :trackable, :validatable, :omniauthable,
     :omniauth_providers => [:linkedin]
 
+  mount_uploader :cv, CvUploader
+
   def self.connect_to_linkedin(auth, signed_in_resource=nil)
     user = User.where(:provider => auth.provider, :uid => auth.uid).first
     if user

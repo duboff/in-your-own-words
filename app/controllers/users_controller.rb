@@ -15,7 +15,7 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find params[:id]
-    @user.update! params[:user].permit(:name)
+    @user.update! params[:user].permit(:name, :cv)
     redirect_to user_path(@user)
   end
 end
