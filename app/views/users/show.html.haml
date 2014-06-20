@@ -6,11 +6,13 @@
 %p
   =image_tag @user.picture_url, class: "user-photo"
 %p.headline
-  =@user.headline
+  ="Headline: #{@user.headline}"
 %p.skills
-  =@user.skill_names.join(' ')
+  ="Skills: #{@user.skill_names.join(' ')}"
+%p.positions
+  ="Positions: #{@user.position_names.join(' ')}"
 %p.location
-  =@user.location
+  ="Location: #{@user.location}"
 %p.cv
   = link_to 'CV', @user.cv.url
 

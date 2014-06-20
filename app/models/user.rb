@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
 
   has_and_belongs_to_many :skills
+  has_many :positions
   # attr_accessor :client
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
@@ -19,6 +20,7 @@ class User < ActiveRecord::Base
       if registered_user
         return registered_user
       else
+        p auth.extra.raw_info.positions.values.last
         user = User.create(name:auth.info.name,
                            picture_url:auth.info.image,
                            headline:auth.info.description,
@@ -27,8 +29,8 @@ class User < ActiveRecord::Base
                            uid:auth.uid,
                            email:auth.info.email,
                            skill_names:auth.extra.raw_info.skills.values.last.map {|value| value.skill.name},
+                           position_names:auth.extra.raw_info.positions.values.last.map { |value| [value.company.name, value.title] },
                            password:Devise.friendly_token[0,20]
-
                            )
       end
     end
@@ -41,8 +43,19 @@ class User < ActiveRecord::Base
     end
   end
 
+  def position_names=(position_arrays)
+    position_arrays.each do |position_arr|
+      position = Position.create(company: position_arr.first, title: position_arr.last)
+      positions << position
+    end
+  end
+
   def skill_names
-    skills.map(&:name)
+    skills.map {|skill| skill.name }
+  end
+
+  def position_names
+    positions.map {|pos| "#{pos.company}: #{pos.title}" }.reverse
   end
 
 end
