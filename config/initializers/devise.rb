@@ -233,6 +233,7 @@ Devise.setup do |config|
   {
     scope: 'r_fullprofile r_emailaddress',
     fields: ['id', 'email-address', 'first-name', 'last-name', 'location', 'headline', 'skills', 'picture-url', 'positions']
+
   }
 
   # ==> Warden configuration
