@@ -1,10 +1,9 @@
 class User < ActiveRecord::Base
 
   has_and_belongs_to_many :skills
-  <<<<<<< HEAD
+
   has_many :positions
-=======
-    >>>>>>> a828ce922724ff805f4a9af4f6bbaf003c462d24
+
   # attr_accessor :client
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
@@ -47,7 +46,7 @@ class User < ActiveRecord::Base
     end
   end
 
-  <<<<<<< HEAD
+
   def position_names=(position_arrays)
     position_arrays.each do |position_arr|
       position = Position.create(company: position_arr.first, title: position_arr.last)
@@ -61,10 +60,6 @@ class User < ActiveRecord::Base
 
   def position_names
     positions.map {|pos| "#{pos.company}: #{pos.title}" }.reverse
-=======
-    def skill_names
-      skills.map(&:name)
-      >>>>>>> a828ce922724ff805f4a9af4f6bbaf003c462d24
-    end
 
   end
+end

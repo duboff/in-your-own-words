@@ -17,3 +17,15 @@
   = link_to 'CV', @user.cv.url
 
 = link_to 'Edit account', edit_user_path
+
+#players
+  %audio.recorder{autoplay: 'autoplay'}
+
+%button#record_button
+  Start recording
+%button#play_button
+  Play recording
+%button#upload_button
+  Upload
+
+  
