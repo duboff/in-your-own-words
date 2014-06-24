@@ -22,6 +22,7 @@ gem 'linkedin-oauth2'
 gem 'carrierwave'
 gem "fog"
 gem 'heroku_secrets', github: 'alexpeattie/heroku_secrets'
+gem 'uuid'
 
 group :development do
   gem 'better_errors'

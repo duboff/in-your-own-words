@@ -12,6 +12,7 @@ class User < ActiveRecord::Base
     :omniauth_providers => [:linkedin]
 
   mount_uploader :cv, CvUploader
+  mount_uploader :audio, AudioUploader
 
   def self.connect_to_linkedin(auth, signed_in_resource=nil)
     user = User.where(:provider => auth.provider, :uid => auth.uid).first

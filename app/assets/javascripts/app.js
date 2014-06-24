@@ -111,13 +111,15 @@ $(document).ready(function() {
     $("#upload_button").click(function() {
         var request = new XMLHttpRequest();
 
-        request.onreadystatechange = function() {
-            if (request.readyState == 4 && request.status == 200) {
-                window.location.href = "/video/" + request.responseText;
-            }
-        };
 
-        request.open('POST', "/upload");
+        // request.onreadystatechange = function() {
+        //     if (request.readyState == 4 && request.status == 200) {
+        //         window.location.href = "/video/" + request.responseText;
+        //     }
+        // };
+
+        request.open('POST', "8/upload");
+        request.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'));
         request.send(formData);
     });
 
