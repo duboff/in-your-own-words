@@ -25,7 +25,7 @@ class User < ActiveRecord::Base
         return registered_user
       else
         user = User.create(name:auth.info.name,
-                           picture_url:auth.info.image,
+                           picture_url:auth.extra.raw_info.pictureUrls.values.last.first,
                            headline:auth.info.description,
                            location:auth.info.location.name,
                            provider:auth.provider,
@@ -59,6 +59,5 @@ class User < ActiveRecord::Base
 
   def position_names
     positions.map {|pos| "#{pos.company}: #{pos.title}" }.reverse
-
   end
 end
