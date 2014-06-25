@@ -19,7 +19,7 @@
 = link_to 'Edit account', edit_user_path
 
 #players
-  %audio.recorder{autoplay: 'autoplay'}
+  %audio.recorder{src: @user.audio.url, controls: 'controls', preload: "preload"}
 
 %button#record_button
   Start recording

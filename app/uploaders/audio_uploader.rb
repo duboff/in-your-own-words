@@ -6,6 +6,16 @@ class AudioUploader < CarrierWave::Uploader::Base
   # include CarrierWave::RMagick
   # include CarrierWave::MiniMagick
 
+  def filename
+    "#{secure_token}.wav" if original_filename.present?
+  end
+
+  protected
+  def secure_token
+    var = :"@#{mounted_as}_secure_token"
+    model.instance_variable_get(var) or model.instance_variable_set(var, SecureRandom.uuid)
+  end
+
   # Choose what kind of storage to use for this uploader:
   # storage :file
   # storage :fog

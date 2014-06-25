@@ -20,21 +20,12 @@ class UsersController < ApplicationController
   end
 
   def upload
-    uuid = UUID.generate
+
     puts params.inspect
-    # audio_type = params['audio'][:type].split("/").last
-    # name = uuid + '.' + audio_type
     @user = User.find params[:id]
     @user.audio = params['audio']
+
     @user.save!
-    # redirect_to user_path(@user)
-
-    # tempfile = Tempfile.new("audioupload")
-    # tempfile.binmode
-    # tempfile << request.body.read
-    # tempfile.rewind
-
-
 
     respond_to do |format|
       if @user.save
@@ -46,12 +37,4 @@ class UsersController < ApplicationController
     # redirect_to user_path(@user)
   end
 
-
-
-
-
-  #   # File.open("uploads/#{uuid}.#{audio_type}", "w") do |f|
-  #   #   f.write(params['audio'][:tempfile].read)
-  #   # end
-  # end
 end
