@@ -18,11 +18,15 @@ gem 'thin'
 gem 'omniauth'
 gem 'omniauth-linkedin-oauth2'
 gem 'font-awesome-sass'
-gem 'linkedin-oauth2'
+# gem 'linkedin-oauth2'
 gem 'carrierwave'
 gem "fog"
 gem 'heroku_secrets', github: 'alexpeattie/heroku_secrets'
-gem 'uuid'
+gem "searchkick"
+# gem "elasticsearch", git: "git://github.com/elasticsearch/elasticsearch-ruby.git"
+# gem "elasticsearch-model", git: "git://github.com/elasticsearch/elasticsearch-rails.git"
+# gem "elasticsearch-rails", git: "git://github.com/elasticsearch/elasticsearch-rails.git"
+
 
 group :development do
   gem 'better_errors'

@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+  searchkick
 
   has_and_belongs_to_many :skills
 
@@ -23,8 +24,6 @@ class User < ActiveRecord::Base
       if registered_user
         return registered_user
       else
-
-
         user = User.create(name:auth.info.name,
                            picture_url:auth.info.image,
                            headline:auth.info.description,
@@ -46,7 +45,6 @@ class User < ActiveRecord::Base
       skills << skill
     end
   end
-
 
   def position_names=(position_arrays)
     position_arrays.each do |position_arr|

@@ -110,7 +110,7 @@ $(document).ready(function() {
     // Upload button
     $("#upload_button").click(function() {
         var request = new XMLHttpRequest();
-
+        var id = window.location.pathname.split('/')[2]
 
         // request.onreadystatechange = function() {
         //     if (request.readyState == 4 && request.status == 200) {
@@ -118,7 +118,7 @@ $(document).ready(function() {
         //     }
         // };
 
-        request.open('POST', "8/upload");
+        request.open('POST', id + "/upload");
         request.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'));
         request.send(formData);
     });
