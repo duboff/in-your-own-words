@@ -13,20 +13,19 @@
   ="Positions: #{@user.position_names.join(' ')}"
 %p.location
   ="Location: #{@user.location}"
--if @user.audio.present?
+-if @user.cv.present?
   %p.cv
     = link_to 'CV', @user.cv.url
 
 = link_to 'Edit account', edit_user_path
--if @user.audio.present?
-  #players
-    %audio.recorder{src: @user.audio.url, controls: 'controls', preload: "preload"}
--else
-  %button#record_button
-    Start recording
-  %button#play_button
-    Preview recording
-  %button#upload_button
-    Upload
+
+#players
+  %audio.recorder{src: @user.audio.url, preload: "preload"}
+%button#record_button
+  Start recording
+-# %button#play_button
+-#   Preview recording
+%button#upload_button
+  Upload
 
   

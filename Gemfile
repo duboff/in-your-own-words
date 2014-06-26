@@ -23,6 +23,7 @@ gem 'carrierwave'
 gem "fog"
 gem 'heroku_secrets', github: 'alexpeattie/heroku_secrets'
 gem "searchkick"
+gem 'pluggable_js'
 # gem "elasticsearch", git: "git://github.com/elasticsearch/elasticsearch-ruby.git"
 # gem "elasticsearch-model", git: "git://github.com/elasticsearch/elasticsearch-rails.git"
 # gem "elasticsearch-rails", git: "git://github.com/elasticsearch/elasticsearch-rails.git"

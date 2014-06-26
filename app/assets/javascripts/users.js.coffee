@@ -1,0 +1,123 @@
+window['users#show'] = (data) ->
+  $(document).ready ->
+  
+  # setup
+    stream = undefined
+    audio_recorder = null
+    recording = false
+    playing = false
+    formData = null
+    
+    # record the audio
+
+    # start recording
+    navigator.getUserMedia
+      audio: true
+      video: false
+    , ((stream) ->
+      audio_recorder = RecordRTC(stream,
+        type: "audio"
+        bufferSize: 16384
+      )
+    
+    # # update UI
+    #   $("#record_button").show()
+    ), ->
+      
+    startRecording = ->
+      # record the audio and video
+      audio_recorder.startRecording()
+      
+      # update the UI
+      # $("#play_button").hide()
+      $("#upload_button").hide()
+      $("audio.recorder").show()
+      
+      # $("#video-player").remove();
+      $("#audio-player").remove()
+      $("#record_button").text "Stop recording"
+      
+      # toggle boolean
+      recording = true
+
+    stopRecording = ->
+      
+      # stop recorders
+      audio_recorder.stopRecording()
+      
+      # set form data
+      formData = new FormData()
+      audio_blob = audio_recorder.getBlob()
+      formData.append "audio", audio_blob
+      
+      # add players
+      audio_player = document.createElement("audio")
+      audio_player.id = "audio-player"
+      audio_player.src = URL.createObjectURL(audio_blob)
+      audio_player.controls = true
+      $("#players").append audio_player
+      
+      # update UI
+      # $("video.recorder").hide();
+      # $("#play_button").show()
+      $("#upload_button").show()
+      $("#record_button").text "Start recording"
+      
+      # toggle boolean
+      recording = false
+    
+    # handle recording
+    $("#record_button").click ->
+      if recording
+        stopRecording()
+      else
+        startRecording()
+
+    # stop playback
+    # stopPlayback = ->
+      
+    #   # controlling
+    #   audio = $("#audio-player")[0]
+    #   audio.pause()
+    #   audio.currentTime = 0
+      
+    #   # update ui
+    #   # $("#play_button").text "Play"
+      
+    #   # toggle boolean
+    #   playing = false
+    
+    # # start playback
+    # startPlayback = ->
+      
+    #   # video controlling
+    #   audio = $("#audio-player")[0]
+    #   audio.play()
+      
+    #   # Update UI
+    #   # $("#play_button").text "Stop"
+      
+    #   # toggle boolean
+    #   playing = true
+    
+    # handle playback
+    # $("#play_button").click ->
+    #   if playing
+    #     stopPlayback()
+    #   else
+    #     startPlayback()
+    #   return
+    
+    # Upload button
+    $("#upload_button").click ->
+      request = new XMLHttpRequest()
+      id = window.location.pathname.split("/")[2]
+      
+      # request.onreadystatechange = function() {
+      #     if (request.readyState == 4 && request.status == 200) {
+      #         window.location.href = "/video/" + request.responseText;
+      #     }
+      # };
+      request.open "POST", id + "/upload"
+      request.setRequestHeader "X-CSRF-Token", $("meta[name=\"csrf-token\"]").attr("content")
+      request.send formData
