@@ -34,8 +34,9 @@ img {
 // to make views framework-neutral
 main {
   @extend .container;
-  background-color: #eee;
+  background-color: #C5EBFB;
   padding-bottom: 80px;
+  padding-top: 50px;
   width: 100%;
   margin-top: 51px; // accommodate the navbar
   }
@@ -79,3 +80,27 @@ section {
   @extend .btn-primary;
   @extend .btn-xs;
 }
+.img-thumbnail {
+  background-color: #7DBAE1;
+}
+.userpic {
+  position:relative;
+}
+.btn-play {
+  position: absolute;
+  bottom: -18%;
+  left: 46%;
+  width: 100px;
+  height: 100px;
+  border: 6px solid #3F91C5;
+  border-radius: 54px;
+  background-color: #84BBDE;
+}
+.btn-play span {
+  font-size: 48px;
+  color: #3F91C5;
+}
+.username {
+  margin-top: 5%;
+}
+
