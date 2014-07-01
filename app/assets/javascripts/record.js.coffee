@@ -1,7 +1,10 @@
-window['users#show'] = (data) ->
+window['after_signup#show'] = (data) ->
   $(document).ready ->
-  
-  # setup
+    $('#allowMessage').modal('show')
+    if window.location.pathname.split("/")[2] == 'record_audio'
+      record()
+
+  record = ->
     stream = undefined
     audio_recorder = null
     recording = false
@@ -21,9 +24,12 @@ window['users#show'] = (data) ->
       )
     
     # # update UI
-    #   $("#record_button").show()
+      hideReminder()
     ), ->
       
+    hideReminder = ->
+      $('#allowMessage').modal('hide')
+
     startRecording = ->
       # record the audio and video
       audio_recorder.startRecording()
@@ -33,7 +39,6 @@ window['users#show'] = (data) ->
       $("#upload_button").hide()
       $("audio.recorder").show()
       
-      # $("#video-player").remove();
       $("#audio-player").remove()
       $("#record_button").text "Stop recording"
       
@@ -111,13 +116,15 @@ window['users#show'] = (data) ->
     # Upload button
     $("#upload_button").click ->
       request = new XMLHttpRequest()
-      id = window.location.pathname.split("/")[2]
+      # id = window.location.pathname.split("/")[2]
       
       # request.onreadystatechange = function() {
       #     if (request.readyState == 4 && request.status == 200) {
       #         window.location.href = "/video/" + request.responseText;
       #     }
       # };
-      request.open "POST", id + "/upload"
+      request.open "POST", "upload"
       request.setRequestHeader "X-CSRF-Token", $("meta[name=\"csrf-token\"]").attr("content")
       request.send formData
+
+

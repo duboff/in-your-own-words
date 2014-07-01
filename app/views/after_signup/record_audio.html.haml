@@ -1,0 +1,24 @@
+.modal.fade#allowMessage{tabindex: '-1', role: 'dialog', aria: {hidden: 'true'}} 
+  .modal-dialog
+    .modal-content
+      .modal-body
+        #upArrow
+        %p I need access to the webcam to start.
+        %p 
+          Please click 
+          %strong allow.
+#players
+  %audio.recorder{src: @user.audio.url, preload: "preload"}
+%button#record_button
+  Start recording
+-# %button#play_button
+-#   Preview recording
+%button#upload_button
+  Upload
+.controls
+  = link_to "Next", next_wizard_path, :class => 'btn btn-primary'
+
+  = link_to 'skip for now' , next_wizard_path
+
+
+    

@@ -3,7 +3,15 @@ Rails.application.routes.draw do
   devise_for :users, :controllers => { :omniauth_callbacks => "omniauth_callbacks", :registrations => "registrations" }
 
   resources :users do
-    collection { get :search }
-    member { post :upload }
+    collection do
+      get :search
+      post :upload
+    end
+    # member {  }
+  end
+  resources :after_signup do
+    collection do
+      post :upload
+    end
   end
 end

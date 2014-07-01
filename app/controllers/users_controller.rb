@@ -24,22 +24,19 @@ class UsersController < ApplicationController
     redirect_to user_path(@user)
   end
 
-  def upload
-
-    puts params.inspect
-    @user = User.find params[:id]
-    @user.audio = params['audio']
-
-    @user.save!
-
-    respond_to do |format|
-      if @user.save
-        format.json { head :ok }
-      else
-        format.json { render :json => @user.errors, :status => :unprocessable_entity }
-      end
-    end
-    # redirect_to user_path(@user)
-  end
+  # def upload
+  #   # puts params.inspect
+  #   @user = current_user
+  #   @user.audio = params['audio']
+  #   @user.save!
+  #   respond_to do |format|
+  #     if @user.save
+  #       format.json { head :ok }
+  #     else
+  #       format.json { render :json => @user.errors, :status => :unprocessable_entity }
+  #     end
+  #   end
+  #   # redirect_to user_path(@user)
+  # end
 
 end
