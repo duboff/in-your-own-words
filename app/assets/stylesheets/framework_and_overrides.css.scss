@@ -1,5 +1,6 @@
 // import the CSS framework
 @import "bootstrap";
+// @import url(http://fonts.googleapis.com/css?family=Raleway);
 
 // make all images responsive by default
 img {
@@ -82,14 +83,17 @@ section {
 }
 .img-thumbnail {
   background-color: #7DBAE1;
+  padding: 8px;
 }
 .userpic {
   position:relative;
 }
 .btn-play {
-  position: absolute;
-  bottom: -18%;
-  left: 46%;
+  position: relative;
+  top: -60px;
+  // margin-top: -55px;
+  // left: 50%;
+  // right: 50%;
   width: 100px;
   height: 100px;
   border: 6px solid #3F91C5;
@@ -101,6 +105,32 @@ section {
   color: #3F91C5;
 }
 .username {
-  margin-top: 5%;
+  margin-top: -5%;
 }
-
+.username h2 {
+  font-family: 'Raleway', sans-serif;
+  font-weight: 700;
+  // font-size: 50px;
+}
+.headline {
+  margin-top: 20px;
+}
+.location {
+  margin-top: 10px;
+  font-size: 18px;
+}
+.headline p {
+  font-family: 'Raleway', sans-serif;
+  font-weight: 500;
+  font-size: 20px;
+}
+.skills {
+  margin-top: 20px;
+}
+.tag {
+  line-height: 46px;
+  margin-right: 5px;
+  margin-left: 5px;
+  font-size: 20px;
+  border-radius: 15px;
+}
