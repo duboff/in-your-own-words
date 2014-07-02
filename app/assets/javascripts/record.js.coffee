@@ -72,6 +72,7 @@ window['after_signup#show'] = (data) ->
       recording = false
     
     # handle recording
+    
     $("#record_button").click ->
       if recording
         stopRecording()
