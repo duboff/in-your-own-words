@@ -1,0 +1,55 @@
+-# .authform
+-#   %h3
+-#     Confirm your details and upload the CV
+-#   = simple_form_for(@user, method: :put, :html => {multipart: true, role: 'form', class: 'form-vertical'}) do |f|
+-#     .form-group
+-#       = f.input :name, :autofocus => true, class: 'form-control'
+-#     .form-group
+-#       = f.input :headline, :autofocus => true, class: 'form-control'
+-#     .form-group
+-#       = f.input :skill_names, :autofocus => true, class: 'form-control'
+-#     .form-group
+-#       = f.input :position_names, :autofocus => true, class: 'form-control'
+-#     .form-group
+-#       = f.label 'Upload your CV'
+-#       = f.file_field :cv 
+-#     = f.button :submit, 'Save profile', :class => 'btn-primary'
+.wrapper{ng: {controller: "EditableFormCtrl"}}
+  .row.text-center
+    .userpic
+      =image_tag @user.picture_url, class: "user-photo img-circle img-responsive img-thumbnail"
+      -# %button.btn-play#play-button
+      -#   %span.glyphicon.glyphicon-play
+
+      =button_to '', class: 'btn-play', id: 'play-button' do
+        %span.glyphicon.glyphicon-play
+  <form editable-form name="editableForm" onaftersave="saveUser()">
+  .row.text-center.username
+    %h2
+      %span{editable:{text: "user.name"}, "e-name" => "name"}
+        {{ user.name }}
+  .row.text-center.location
+    %span.glyphicon.glyphicon-map-marker
+    %span
+      =@user.location
+  .row.text-center.headline
+    %p
+      =@user.headline
+  .row.skills.text-center
+    - @user.skill_names.each do |skill|
+      %span.label.label-primary.tag
+        = "#{skill}"
+  .row.cv.text-center
+    -if @user.cv.present?
+      =link_to @user.cv.url do
+        %span.glyphicon.glyphicon-paperclip 
+        %span Download CV
+  .buttons
+    %button.btn.btn-default{ng:{click: "editableForm.$show()", show: "!editableForm.$visible"}}
+      Edit
+    %span{ng: {show: "editableForm.$visible"}}
+      %button.btn.btn-default{ng:{disabled: "editableForm.$waiting"}}
+        Save
+      %button.btn.btn-default{ng:{disabled: "editableForm.$waiting", click: "editableForm.$cancel()"}}
+        Cancel
+  </form>

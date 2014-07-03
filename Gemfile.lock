@@ -34,6 +34,7 @@ GEM
       thread_safe (~> 0.1)
       tzinfo (~> 1.1)
     addressable (2.3.6)
+    angularjs-rails (1.2.19)
     arel (5.0.1.20140414130214)
     bcrypt (3.1.7)
     better_errors (1.1.0)
@@ -365,6 +366,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  angularjs-rails
   better_errors
   binding_of_caller
   bootstrap-sass

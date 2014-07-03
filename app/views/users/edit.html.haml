@@ -1,10 +1,19 @@
 .authform
   %h3
-    Edit #{@user.email}
-  = simple_form_for(@user, :html => { method: :put, multipart: true, role: 'form', class: 'form-vertical'}) do |f|
+    Confirm your details and upload the CV 
+
+    bla bla
+  = simple_form_for(@user, url: wizard_path, method: :put, :html => {multipart: true, role: 'form', class: 'form-vertical'}) do |f|
     .form-group
-      = f.label :name
+      
       = f.input :name, :autofocus => true, class: 'form-control'
     .form-group
+      = f.input :headline, :autofocus => true, class: 'form-control'
+    .form-group
+      = f.input :skill_names, :autofocus => true, class: 'form-control'
+    .form-group
+      = f.input :position_names, :autofocus => true, class: 'form-control'
+    .form-group
+      = f.label 'Upload your CV'
       = f.file_field :cv 
     = f.button :submit, 'Save profile', :class => 'btn-primary'
