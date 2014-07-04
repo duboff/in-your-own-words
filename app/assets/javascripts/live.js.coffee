@@ -32,6 +32,9 @@ app.controller "EditableFormCtrl", ($scope, $filter, $http) ->
     )
   loadUser()
 
+  $scope.saveUser = ->
+    $http.put("/users/15", $scope.user)
+
 app.controller "SkillCtrl", ($scope, $filter, $http) ->
     # //lets create array from a string.
     # $scope.alpha = 'abcdefghijklmopqrstuvwxyz'.split("");
@@ -45,6 +48,16 @@ app.controller "SkillCtrl", ($scope, $filter, $http) ->
         console.error('Failed to load posts.')
     )
   loadSkills()
+
+  # $scope.saveUser = ->
+    # $http.put("/users/15", $scope.user)
+  $scope.deleteSkill = (skill) ->
+    index = $scope.skills.indexOf(skill) + 1
+    if index != -1
+      $scope.skills.splice(index-1, 1);
+      url = "/users/15/skills/" + index
+      console.log(url)
+      $http.put(url, index)
 
 $(document).ready ->
   $(".edit-btn").click ->

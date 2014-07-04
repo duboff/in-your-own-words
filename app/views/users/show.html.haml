@@ -35,6 +35,8 @@
       %li{ng: {repeat: "skill in skills"}}
         %span.label.label-primary.tag
           {{skill}}
+        %button{ng:{click: "deleteSkill(skill)"}, type: 'button'}
+          d
         
         -# = skill
         
