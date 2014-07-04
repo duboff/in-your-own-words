@@ -29,15 +29,22 @@
             Save
           %button.btn.btn-danger.cancel-btn{ng: {disabled: "editableForm.$waiting", click: "editableForm.$cancel()"}, type: 'button'}
             Cancel
-    .row.skills.text-center
-      - @user.skill_names.each do |skill|
+.wrapper{ng: {controller: "SkillCtrl"}}
+  .row.skills.text-center
+    %ul
+      %li{ng: {repeat: "skill in skills"}}
         %span.label.label-primary.tag
-          = skill
-    .row.cv.text-center
-      -if @user.cv.present?
-        =link_to @user.cv.url do
-          %span.glyphicon.glyphicon-paperclip 
-          %span Download CV
+          {{skill}}
+        
+        -# = skill
+        
+      
+
+.row.cv.text-center
+  -if @user.cv.present?
+    =link_to @user.cv.url do
+      %span.glyphicon.glyphicon-paperclip 
+      %span Download CV
 
 
 #players

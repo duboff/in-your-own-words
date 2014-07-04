@@ -26,11 +26,25 @@ app.controller "EditableFormCtrl", ($scope, $filter, $http) ->
   loadUser = ->
     $http.get('/users/15.json').success( (data) ->
       $scope.user = data
-      # console.log(data)
+      # console.log(skills)
      ).error( ->
       console.error('Failed to load posts.')
     )
   loadUser()
+
+app.controller "SkillCtrl", ($scope, $filter, $http) ->
+    # //lets create array from a string.
+    # $scope.alpha = 'abcdefghijklmopqrstuvwxyz'.split("");
+  $scope.skills = ['dev', 'design']
+  
+  loadSkills = ->
+    $http.get('/users/15.json').success( (data) ->
+      $scope.skills = data.skills.map (skill) -> skill.name
+      console.log($scope.skills)
+    ).error( ->
+        console.error('Failed to load posts.')
+    )
+  loadSkills()
 
 $(document).ready ->
   $(".edit-btn").click ->
