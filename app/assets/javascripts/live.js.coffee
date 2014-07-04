@@ -1,4 +1,6 @@
-app = angular.module("app", ["xeditable"])
+app = angular.module("app", ["xeditable"], ($locationProvider) ->
+    $locationProvider.html5Mode(true);
+)
 
 app.config ($httpProvider) ->
   authToken = $("meta[name=\"csrf-token\"]").attr("content")
@@ -17,14 +19,17 @@ app.run (editableOptions) ->
   editableOptions.theme = "bs3"
 # bootstrap3 theme.Can be also 'bs2', 'default'
 
-app.controller "EditableFormCtrl", ($scope, $filter, $http) ->
+app.controller "EditableFormCtrl", ($scope, $filter, $http, $location) ->
   $scope.user = {
     id: 1,
     name: 'awesome user'
   }
 
   loadUser = ->
-    $http.get('/users/15.json').success( (data) ->
+    id = $location.path().split("/")[2]
+    url = '/users/' + id + '.json'
+
+    $http.get(url).success( (data) ->
       $scope.user = data
       # console.log(skills)
      ).error( ->
@@ -33,16 +38,20 @@ app.controller "EditableFormCtrl", ($scope, $filter, $http) ->
   loadUser()
 
   $scope.saveUser = ->
-    $http.put("/users/15", $scope.user)
+    id = $location.path().split("/")[2]
+    url = '/users/' + id
+    $http.put(url, $scope.user)
 
-app.controller "SkillCtrl", ($scope, $filter, $http) ->
+app.controller "SkillCtrl", ($scope, $filter, $http, $location) ->
     # //lets create array from a string.
     # $scope.alpha = 'abcdefghijklmopqrstuvwxyz'.split("");
   $scope.skills = ['dev', 'design']
   
   loadSkills = ->
-    $http.get('/users/15.json').success( (data) ->
-      $scope.skills = data.skills.map (skill) -> skill.name
+    id = $location.path().split("/")[2]
+    url = '/users/' + id + '.json'
+    $http.get(url).success( (data) ->
+      $scope.skills = data.skills
       console.log($scope.skills)
     ).error( ->
         console.error('Failed to load posts.')
@@ -51,13 +60,12 @@ app.controller "SkillCtrl", ($scope, $filter, $http) ->
 
   # $scope.saveUser = ->
     # $http.put("/users/15", $scope.user)
-  $scope.deleteSkill = (skill) ->
-    index = $scope.skills.indexOf(skill) + 1
+  $scope.deleteSkill = (skill_id, index) ->
+    id = $location.path().split("/")[2]
     if index != -1
-      $scope.skills.splice(index-1, 1);
-      url = "/users/15/skills/" + index
-      console.log(url)
-      $http.put(url, index)
+      $scope.skills.splice(index, 1);
+      url = "/users/" + id + "/skills/" + skill_id
+      $http.put(url, skill_id)
 
 $(document).ready ->
   $(".edit-btn").click ->

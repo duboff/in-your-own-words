@@ -15,7 +15,7 @@ class UsersController < ApplicationController
   def show
     @user = User.find params[:id]
     respond_to do |format|
-      format.json {render json: @user, :include => {skills: {only: :name}}, except: [:created_at, :updated_at, :provider, :uid]}
+      format.json {render json: @user, :include => {skills: {only: [:id, :name]}}, except: [:created_at, :updated_at, :provider, :uid]}
       format.html
     end
   end
