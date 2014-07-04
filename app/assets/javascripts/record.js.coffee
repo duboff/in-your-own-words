@@ -36,11 +36,14 @@ window['after_signup#show'] = (data) ->
       
       # update the UI
       # $("#play_button").hide()
-      $("#upload_button").hide()
+      # $("#upload_button").hide()
       $("audio.recorder").show()
-      
-      $("#audio-player").remove()
-      $("#record_button").text "Stop recording"
+
+      a = $('.glyphicon-record')
+      a.removeClass('glyphicon-record')
+      a.addClass('glyphicon-stop')
+
+      # $("#audio-player").remove()
       
       # toggle boolean
       recording = true
@@ -67,13 +70,17 @@ window['after_signup#show'] = (data) ->
       # $("#play_button").show()
       $("#upload_button").show()
       $("#record_button").text "Start recording"
+
+      a = $('.glyphicon-stop')
+      a.removeClass('glyphicon-stop')
+      a.addClass('glyphicon-play')
       
       # toggle boolean
       recording = false
     
     # handle recording
     
-    $("#record_button").click ->
+    $("#record-button").click ->
       if recording
         stopRecording()
       else

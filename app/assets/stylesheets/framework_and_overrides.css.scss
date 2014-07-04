@@ -144,8 +144,7 @@ section {
 }
 .tag {
   line-height: 46px;
-  margin-right: 5px;
-  margin-left: 5px;
+
   font-size: 20px;
   border-radius: 15px;
 }
@@ -154,6 +153,9 @@ section {
   font-size: 20px;
   font-family: 'Raleway', sans-serif;
   font-weight: 500;
+}
+.cv-upload {
+  margin-left: 20%
 }
 .controls {
   margin-top: 20px;
@@ -171,3 +173,45 @@ section {
  top: -1px;
  font-size: 20px;
 }
+.skill {
+  position: relative;
+  display: inline-block;
+
+}
+
+.del-btn {
+     padding-left: 0;
+     background: none;
+     border: none;
+     border-radius: 10px;
+//     position: absolute;
+     margin-top: -4px;
+
+//     right: -2px;
+     font-weight: bold;
+    line-height: 13px;
+    font-size: 15px;
+    height: 24px;
+    width: 10px;
+    // display: none;
+//    color: #fff;
+//     text-shadow: 0 1px 0 #ffffff;
+//     // opacity: 0.2;
+//     filter: alpha(opacity=20);
+//     text-decoration: none;
+//     // display: none;    
+ }
+ .del-btn:hover {
+  background: none;
+  color: grey;
+}
+//   color: #000000;
+//   text-decoration: none;
+//   opacity: 0.4;
+//   filter: alpha(opacity=40);
+//   cursor: pointer;
+// }
+// .del-btn:before {
+//   content: "x";
+
+// }

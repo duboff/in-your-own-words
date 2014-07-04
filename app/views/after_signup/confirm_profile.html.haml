@@ -1,16 +1,11 @@
 .authform
-  %h3
-    Confirm your details and upload the CV
+  %h3.text-center
+    Upload the CV
   = simple_form_for(@user, url: wizard_path, method: :put, :html => {multipart: true, role: 'form', class: 'form-vertical'}) do |f|
-    .form-group
-      = f.input :name, :autofocus => true, class: 'form-control'
-    .form-group
-      = f.input :headline, :autofocus => true, class: 'form-control'
-    .form-group
-      = f.input :skill_names, :autofocus => true, class: 'form-control'
-    .form-group
-      = f.input :position_names, :autofocus => true, class: 'form-control'
-    .form-group
-      = f.label 'Upload your CV'
-      = f.file_field :cv 
-    = f.button :submit, 'Save profile', :class => 'btn-primary'
+    %p.text-center pdf, docx and doc formats are supported
+    .form-group.text-center.cv-upload
+      = f.file_field :cv
+    .controls
+      = link_to 'Previous step', previous_wizard_path
+      = f.button :submit, 'Save profile', :class => 'btn btn-success'
+      
