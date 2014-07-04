@@ -1,6 +1,8 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!, except: [:show, :index]
 
+  # respond_to :json, :html
+
   def index
     @users = User.all
   end
@@ -20,14 +22,22 @@ class UsersController < ApplicationController
 
   def edit
     @user = User.find(params[:id])
-    @bla = 'bla'
   end
 
   def update
-    @user = User.find params[:id]
-    @user.update! params[:user].permit(:name, :cv)
-    redirect_to user_path(@user)
+    @user = current_user
+    @user.update! params[:user].permit(:name, :headline, :location)
+    respond_to do |format|
+      if @user.save
+        format.json { head :ok }
+        format.html {render :show}
+      else
+        format.json { render :json => @user.errors, :status => :unprocessable_entity }
+      end
+    end
   end
+
+  # def
 
   # def upload
   #   # puts params.inspect

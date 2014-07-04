@@ -15,5 +15,4 @@
 //= require angular
 //= require xeditable.min
 //= require turbolinks
-//= require liveedit
 //= require_tree .

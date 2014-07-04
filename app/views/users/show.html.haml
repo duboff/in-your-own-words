@@ -1,31 +1,45 @@
+.wrapper{ng: {controller: "EditableFormCtrl"}}
+  .row.text-center
+    .userpic
+      =image_tag @user.picture_url, class: "user-photo img-circle img-responsive img-thumbnail"
+      =button_to '', class: 'btn-play', id: 'play-button' do
+        %span.glyphicon.glyphicon-play
+  %form{'editable-form' => '', name: "editableForm", onaftersave: "saveUser()", onshow: 'hideLocationMarker()'}
+    .row.text-center
+      .username
+        %span{editable:{text: "user.name"}, 'e-name' => 'name'}
+          %h2
+            {{ user.name }}
+      - if @user == current_user
+        .buttons
+          %button.edit-btn{ng:{click: "editableForm.$show()", show: "!editableForm.$visible"}, type: 'button'}
+            %span.glyphicon.glyphicon-edit
+    .row.text-center.location
+      %span.glyphicon.glyphicon-map-marker
+      %span{editable:{text: "user.location"}, 'e-name' => 'location'}
+        {{ user.location }}
+    .row.text-center.headline
+      %p
+        %span{editable:{text: "user.headline"}, 'e-name' => 'headline'}
+          {{ user.headline }}
+    .row.text-center.controls{ng: {show: "editableForm.$visible"}}
+      .buttons
+        %span
+          %button.btn.btn-success.save-btn{ng: {disabled: "editableForm.$waiting"}, type: 'submit'}
+            Save
+          %button.btn.btn-danger.cancel-btn{ng: {disabled: "editableForm.$waiting", click: "editableForm.$cancel()"}, type: 'button'}
+            Cancel
+    .row.skills.text-center
+      - @user.skill_names.each do |skill|
+        %span.label.label-primary.tag
+          = skill
+    .row.cv.text-center
+      -if @user.cv.present?
+        =link_to @user.cv.url do
+          %span.glyphicon.glyphicon-paperclip 
+          %span Download CV
 
-.row.text-center
-  .userpic
-    =image_tag @user.picture_url, class: "user-photo img-circle img-responsive img-thumbnail"
-    -# %button.btn-play#play-button
-    -#   %span.glyphicon.glyphicon-play
 
-    =button_to '', class: 'btn-play', id: 'play-button' do
-      %span.glyphicon.glyphicon-play
-.row.text-center.username
-  %h2
-    #{@user.name}
-.row.text-center.location
-  %span.glyphicon.glyphicon-map-marker
-  %span
-    =@user.location
-.row.text-center.headline
-  %p
-    =@user.headline
-.row.skills.text-center
-  - @user.skill_names.each do |skill|
-    %span.label.label-primary.tag
-      = "#{skill}"
-.row.cv.text-center
-  -if @user.cv.present?
-    =link_to @user.cv.url do
-      %span.glyphicon.glyphicon-paperclip 
-      %span Download CV
 #players
   %audio#audio-player{src: @user.audio.url, preload: "preload", onended: '$("#play-button").click()'}
 -# %p.positions
