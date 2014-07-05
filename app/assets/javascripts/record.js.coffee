@@ -62,14 +62,14 @@ window['after_signup#show'] = (data) ->
       audio_player = document.createElement("audio")
       audio_player.id = "audio-player"
       audio_player.src = URL.createObjectURL(audio_blob)
-      audio_player.controls = true
+      audio_player.controls = false
       $("#players").append audio_player
       
       # update UI
       # $("video.recorder").hide();
       # $("#play_button").show()
       $("#upload_button").show()
-      $("#record_button").text "Start recording"
+      # $("#record-button").text "Start recording"
 
       a = $('.glyphicon-stop')
       a.removeClass('glyphicon-stop')
