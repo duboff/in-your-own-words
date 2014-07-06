@@ -104,6 +104,27 @@ section {
   font-size: 48px;
   color: #3F91C5;
 }
+.links {
+  display: none;
+}
+.upload-link {
+  text-decoration: none;
+  border-bottom: 1px dashed #2A6496;
+  font-size: 24px;
+  margin-left: 10px;
+  margin-right: 10px;
+  
+}
+.upload-link:hover {
+  text-decoration: none;
+  border-bottom: none;
+
+}
+.explainer{ 
+// margin-top: -20px;
+font-size: 18px;
+color: #428BCA;
+}
 .username {
   margin-top: -5%;
   display: inline-block;

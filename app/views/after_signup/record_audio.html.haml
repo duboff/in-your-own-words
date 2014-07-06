@@ -9,21 +9,19 @@
           %strong allow.
 #players
   %audio.recorder{src: @user.audio.url, preload: "preload"}
-
-
 .row.text-center
   .userpic
     =image_tag @user.picture_url, class: "user-photo img-circle img-responsive img-thumbnail"
     =button_to '', class: 'btn-play', id: 'record-button' do
       %span.glyphicon.glyphicon-record
-      
-
--# %button#play_button
--#   Preview recording
-
+.row.links.text-center
+  =link_to 'Re-record', '', class: 'upload-link', id: 'cancel-link'
+  =link_to 'Satisfied', '', class: 'upload-link', id: 'upload-link'
+.row.text-center.explainer
+  %p Please record a short message for employers. 
+  %p We suggest you keep it to under a minute.
 .row.controls.text-center
   = link_to "Next", next_wizard_path, :class => 'btn btn-primary'
   = link_to 'skip for now' , next_wizard_path
-
 #players
     

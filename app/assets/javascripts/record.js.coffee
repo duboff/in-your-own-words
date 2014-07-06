@@ -22,7 +22,6 @@ window['after_signup#show'] = (data) ->
         type: "audio"
         bufferSize: 16384
       )
-    
     # # update UI
       hideReminder()
     ), ->
@@ -63,17 +62,23 @@ window['after_signup#show'] = (data) ->
       audio_player.id = "audio-player"
       audio_player.src = URL.createObjectURL(audio_blob)
       audio_player.controls = false
+      console.log(audio_player)
       $("#players").append audio_player
       
       # update UI
       # $("video.recorder").hide();
       # $("#play_button").show()
-      $("#upload_button").show()
+      $(".links").show()
+      $(".explainer").hide()
       # $("#record-button").text "Start recording"
+
 
       a = $('.glyphicon-stop')
       a.removeClass('glyphicon-stop')
       a.addClass('glyphicon-play')
+
+      r = $('.btn-play')
+      r.attr("id", "play-button")
       
       # toggle boolean
       recording = false
@@ -122,7 +127,7 @@ window['after_signup#show'] = (data) ->
     #   return
     
     # Upload button
-    $("#upload_button").click ->
+    $("#upload-link").click ->
       request = new XMLHttpRequest()
       # id = window.location.pathname.split("/")[2]
       
@@ -134,5 +139,16 @@ window['after_signup#show'] = (data) ->
       request.open "POST", "upload"
       request.setRequestHeader "X-CSRF-Token", $("meta[name=\"csrf-token\"]").attr("content")
       request.send formData
+    
+    $("#cancel-link").click ->
+      a = $('.glyphicon-play')
+      console.log(a)
+      a.removeClass('glyphicon-play')
+      a.addClass('glyphicon-record')
+      $(".links").hide()
+      $(".explainer").show()
+
+      r = $('.btn-play')
+      r.attr("id", "record-button")
 
 

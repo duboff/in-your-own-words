@@ -36,15 +36,16 @@
         .skill
           %span.label.label-primary.tag
             {{skill.name}}
-            %button.btn.btn-danger.del-btn{ng:{click: "deleteSkill(skill.id, $index)"}, type: 'button'}
-              &#10006;      
+            - if @user == current_user
+              %button.btn.btn-danger.del-btn{ng:{click: "deleteSkill(skill.id, $index)"}, type: 'button'}
+                &#10006;      
 
 .row.cv.text-center
   -if @user.cv.present?
     =link_to @user.cv.url do
       %span.glyphicon.glyphicon-paperclip 
       %span Download CV
-  -else
+  -elsif @user == current_user
     =link_to '/after_signup/confirm_profile', remote: false, class: 'cv-link' do
       %span Upload CV
 
