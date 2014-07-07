@@ -41,7 +41,6 @@ app.controller "EditableFormCtrl", ($scope, $filter, $http, $location) ->
 
 app.controller "SkillCtrl", ($scope, $filter, $http, $location) ->
     # //lets create array from a string.
-    # $scope.alpha = 'abcdefghijklmopqrstuvwxyz'.split("");
   $scope.skills = ['dev', 'design']
   
   loadSkills = ->
@@ -51,12 +50,11 @@ app.controller "SkillCtrl", ($scope, $filter, $http, $location) ->
       $scope.skills = data.skills
       console.log($scope.skills)
     ).error( ->
-        console.error('Failed to load posts.')
+        console.error('Failed to load skills.')
     )
   loadSkills()
 
   # $scope.saveUser = ->
-    # $http.put("/users/15", $scope.user)
   $scope.deleteSkill = (skill_id, index) ->
     id = $location.path().split("/")[2]
     if index != -1
