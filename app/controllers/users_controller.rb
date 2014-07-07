@@ -26,7 +26,7 @@ class UsersController < ApplicationController
 
   def update
     @user = current_user
-    @user.update! params[:user].permit(:name, :headline, :location)
+    @user.update! params[:user].permit(:name, :headline, :location) if params
     respond_to do |format|
       if @user.save
         format.json { head :ok }

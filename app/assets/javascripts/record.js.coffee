@@ -1,5 +1,6 @@
 window['after_signup#show'] = (data) ->
   $(document).ready ->
+    
     $('#allowMessage').modal('show')
     if window.location.pathname.split("/")[2] == 'record_audio'
       record()
@@ -8,12 +9,11 @@ window['after_signup#show'] = (data) ->
     stream = undefined
     audio_recorder = null
     recording = false
-    playing = false
     formData = null
     
-    # record the audio
+  # record the audio
 
-    # start recording
+  # start recording
     navigator.getUserMedia
       audio: true
       video: false
@@ -22,7 +22,6 @@ window['after_signup#show'] = (data) ->
         type: "audio"
         bufferSize: 16384
       )
-    # # update UI
       hideReminder()
     ), ->
       
@@ -30,57 +29,38 @@ window['after_signup#show'] = (data) ->
       $('#allowMessage').modal('hide')
 
     startRecording = ->
-      # record the audio and video
+    # record the audio and video
       audio_recorder.startRecording()
       
-      # update the UI
-      # $("#play_button").hide()
-      # $("#upload_button").hide()
-      $("audio.recorder").show()
-
+    # update the UI
       a = $('.glyphicon-record')
       a.removeClass('glyphicon-record')
       a.addClass('glyphicon-stop')
-
-      # $("#audio-player").remove()
       
-      # toggle boolean
+    # toggle boolean
       recording = true
 
     stopRecording = ->
       
-      # stop recorders
+    # stop recorders
       audio_recorder.stopRecording()
       
-      # set form data
+    # set form data
       formData = new FormData()
       audio_blob = audio_recorder.getBlob()
       formData.append "audio", audio_blob
       
-      # add players
-      audio_player = document.createElement("audio")
-      audio_player.id = "audio-player"
+    # add players
+      audio_player = $('#audio-player')[0]
       audio_player.src = URL.createObjectURL(audio_blob)
-      audio_player.controls = false
-      console.log(audio_player)
-      $("#players").append audio_player
       
-      # update UI
-      # $("video.recorder").hide();
-      # $("#play_button").show()
+    # update UI
+      $("#record-button").hide()
+      $('#play-button').removeClass('hidden')
       $(".links").show()
       $(".explainer").hide()
-      # $("#record-button").text "Start recording"
-
-
-      a = $('.glyphicon-stop')
-      a.removeClass('glyphicon-stop')
-      a.addClass('glyphicon-play')
-
-      r = $('.btn-play')
-      r.attr("id", "play-button")
       
-      # toggle boolean
+    # toggle boolean
       recording = false
     
     # handle recording
@@ -90,41 +70,6 @@ window['after_signup#show'] = (data) ->
         stopRecording()
       else
         startRecording()
-
-    # stop playback
-    # stopPlayback = ->
-      
-    #   # controlling
-    #   audio = $("#audio-player")[0]
-    #   audio.pause()
-    #   audio.currentTime = 0
-      
-    #   # update ui
-    #   # $("#play_button").text "Play"
-      
-    #   # toggle boolean
-    #   playing = false
-    
-    # # start playback
-    # startPlayback = ->
-      
-    #   # video controlling
-    #   audio = $("#audio-player")[0]
-    #   audio.play()
-      
-    #   # Update UI
-    #   # $("#play_button").text "Stop"
-      
-    #   # toggle boolean
-    #   playing = true
-    
-    # handle playback
-    # $("#play_button").click ->
-    #   if playing
-    #     stopPlayback()
-    #   else
-    #     startPlayback()
-    #   return
     
     # Upload button
     $("#upload-link").click ->
@@ -142,13 +87,10 @@ window['after_signup#show'] = (data) ->
     
     $("#cancel-link").click ->
       a = $('.glyphicon-play')
-      console.log(a)
       a.removeClass('glyphicon-play')
       a.addClass('glyphicon-record')
       $(".links").hide()
       $(".explainer").show()
-
-      r = $('.btn-play')
-      r.attr("id", "record-button")
-
-
+      $("#audio-player")[0].src = null
+      $("#record-button").show()
+      $('#play-button').addClass('hidden')

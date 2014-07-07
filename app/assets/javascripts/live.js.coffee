@@ -2,18 +2,15 @@ app = angular.module("app", ["xeditable"], ($locationProvider) ->
     $locationProvider.html5Mode(true);
 )
 
+# To make Angular play nice with Turbolinks http://stackoverflow.com/questions/14797935/using-angularjs-with-turbolinks
+$(document).on('ready page:load', ->
+  angular.bootstrap(document, ['app'])
+)
+
+# To pass CSRF token
 app.config ($httpProvider) ->
   authToken = $("meta[name=\"csrf-token\"]").attr("content")
   $httpProvider.defaults.headers.common["X-CSRF-TOKEN"] = authToken
-
-$(document).on 'page:load', ->
-  $('[ng-app]').each ->
-    module = $(this).attr('ng-app')
-    angular.bootstrap(this, [module])
-
-# defaults = $http.defaults.headers
-# defaults.patch = defaults.patch || {}
-# defaults.patch['Content-Type'] = 'application/json'
 
 app.run (editableOptions) ->
   editableOptions.theme = "bs3"

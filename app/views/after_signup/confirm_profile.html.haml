@@ -1,6 +1,6 @@
 .authform
   %h3.text-center
-    Upload the CV
+    Upload your CV
   = simple_form_for(@user, url: wizard_path, method: :put, :html => {multipart: true, role: 'form', class: 'form-vertical'}) do |f|
     %p.text-center pdf, docx and doc formats are supported
     .form-group.text-center.cv-upload
