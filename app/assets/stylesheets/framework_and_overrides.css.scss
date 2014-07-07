@@ -257,3 +257,14 @@ color: #428BCA;
 .signup {
   margin-top: 10%;
 }
+@media (max-width: 480px)
+{
+  .pull-right{float:none !important;}
+  
+  .btn-group > .btn:first-child {
+     margin-left: 5px;
+     
+       }
+       
+    .btn-toolbar > .btn-group:first-child {margin-bottom:15px;}
+}
