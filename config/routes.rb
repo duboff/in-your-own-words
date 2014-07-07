@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root :to => "home#index"
+  
   devise_for :users, :controllers => { :omniauth_callbacks => "omniauth_callbacks", :registrations => "registrations" }
 
   resources :users do
@@ -8,11 +8,11 @@ Rails.application.routes.draw do
       get :search
       post :upload
     end
-    # member {  }
   end
   resources :after_signup do
     collection do
       post :upload
     end
   end
+  root :to => "home#index"
 end

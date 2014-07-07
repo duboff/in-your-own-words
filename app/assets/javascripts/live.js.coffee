@@ -1,11 +1,9 @@
-app = angular.module("app", ["xeditable"], ($locationProvider) ->
-    $locationProvider.html5Mode(true);
-)
+app = angular.module "app", ["xeditable"]
 
 # To make Angular play nice with Turbolinks http://stackoverflow.com/questions/14797935/using-angularjs-with-turbolinks
-$(document).on('ready page:load', ->
-  angular.bootstrap(document, ['app'])
-)
+# $(document).on('ready page:load', ->
+#   angular.bootstrap(document, ['app'])
+# )
 
 # To pass CSRF token
 app.config ($httpProvider) ->
@@ -16,14 +14,14 @@ app.run (editableOptions) ->
   editableOptions.theme = "bs3"
 # bootstrap3 theme.Can be also 'bs2', 'default'
 
-app.controller "EditableFormCtrl", ($scope, $filter, $http, $location) ->
+app.controller "EditableFormCtrl", ($scope, $filter, $http, $window) ->
   $scope.user = {
     id: 1,
     name: 'awesome user'
   }
 
   loadUser = ->
-    id = $location.path().split("/")[2]
+    id = $window.location.href.split("/")[4]
     url = '/users/' + id + '.json'
 
     $http.get(url).success( (data) ->
@@ -35,20 +33,20 @@ app.controller "EditableFormCtrl", ($scope, $filter, $http, $location) ->
   loadUser()
 
   $scope.saveUser = ->
-    id = $location.path().split("/")[2]
+    id = $scope.user.id
     url = '/users/' + id
+    console.log(url)
     $http.put(url, $scope.user)
 
-app.controller "SkillCtrl", ($scope, $filter, $http, $location) ->
+app.controller "SkillCtrl", ($scope, $filter, $http, $window) ->
     # //lets create array from a string.
   $scope.skills = ['dev', 'design']
   
   loadSkills = ->
-    id = $location.path().split("/")[2]
+    id = $window.location.href.split("/")[4]
     url = '/users/' + id + '.json'
     $http.get(url).success( (data) ->
       $scope.skills = data.skills
-      console.log($scope.skills)
     ).error( ->
         console.error('Failed to load skills.')
     )
@@ -56,7 +54,7 @@ app.controller "SkillCtrl", ($scope, $filter, $http, $location) ->
 
   # $scope.saveUser = ->
   $scope.deleteSkill = (skill_id, index) ->
-    id = $location.path().split("/")[2]
+    id = $window.location.href.split("/")[2]
     if index != -1
       $scope.skills.splice(index, 1);
       url = "/users/" + id + "/skills/" + skill_id

@@ -29,11 +29,6 @@ $(document).ready ->
           
   # toggle boolean
     playing = true
-  
-  $(".button_to").submit (e) ->
-    e.preventDefault()
-    e.stopPropagation()
-    return false
 
   $("#play-button").click ->
     if playing

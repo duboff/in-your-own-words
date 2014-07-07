@@ -14,5 +14,5 @@
 //= require jquery_ujs
 //= require angular
 //= require xeditable.min
-//= require turbolinks
+//= reqyure turbolinks
 //= require_tree .

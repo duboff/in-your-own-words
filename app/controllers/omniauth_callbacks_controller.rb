@@ -16,7 +16,7 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
   end
 
   def after_sign_in_path_for(user)
-    after_signup_index_path
+    user_path(user)
   end
 
 end
