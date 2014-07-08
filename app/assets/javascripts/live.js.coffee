@@ -21,7 +21,8 @@ app.controller "EditableFormCtrl", ($scope, $filter, $http, $window) ->
   }
 
   loadUser = ->
-    id = $window.location.href.split("/")[4]
+    href = $window.location.href.split("/")
+    id = href[href.length - 1]
     url = '/users/' + id + '.json'
 
     $http.get(url).success( (data) ->
@@ -43,7 +44,8 @@ app.controller "SkillCtrl", ($scope, $filter, $http, $window) ->
   $scope.skills = ['dev', 'design']
   
   loadSkills = ->
-    id = $window.location.href.split("/")[4]
+    href = $window.location.href.split("/")
+    id = href[href.length - 1]
     url = '/users/' + id + '.json'
     $http.get(url).success( (data) ->
       $scope.skills = data.skills
@@ -54,7 +56,8 @@ app.controller "SkillCtrl", ($scope, $filter, $http, $window) ->
 
   # $scope.saveUser = ->
   $scope.deleteSkill = (skill_id, index) ->
-    id = $window.location.href.split("/")[2]
+    href = $window.location.href.split("/")
+    id = href[href.length - 1]
     if index != -1
       $scope.skills.splice(index, 1);
       url = "/users/" + id + "/skills/" + skill_id
