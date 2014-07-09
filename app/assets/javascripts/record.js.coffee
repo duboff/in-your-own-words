@@ -59,6 +59,7 @@ window['after_signup#show'] = (data) ->
       $('#play-button').removeClass('hidden')
       $(".links").show()
       $(".explainer").hide()
+      $("#skip-audio-link").hide()
       
     # toggle boolean
       recording = false
@@ -86,11 +87,13 @@ window['after_signup#show'] = (data) ->
       request.send formData
     
     $("#cancel-link").click ->
-      a = $('.glyphicon-play')
-      a.removeClass('glyphicon-play')
-      a.addClass('glyphicon-record')
       $(".links").hide()
       $(".explainer").show()
+      $("#skip-audio-link").show()
       $("#audio-player")[0].src = null
       $("#record-button").show()
       $('#play-button').addClass('hidden')
+      a = $('#record-button').find('.glyphicon-stop')
+      a.removeClass('glyphicon-stop')
+      a.addClass('glyphicon-record')
+      
