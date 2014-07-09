@@ -4,16 +4,17 @@
       =image_tag @user.picture_url, class: "user-photo img-circle img-responsive img-thumbnail"
       =button_to '', class: 'btn-play', id: 'play-button' do
         %span.glyphicon.glyphicon-play
+  - if @user == current_user
+    .row.text-center.headline.edit-profile-block
+      %button.edit-btn{ng: {click: "editableForm.$show()", show: "!editableForm.$visible"}, type: 'button', class: 'btn btn-warning btn-lg'}
+        %span.glyphicon.glyphicon-edit
+        Edit Profile
   %form{'editable-form' => '', name: "editableForm", onaftersave: "saveUser()", onshow: 'hideLocationMarker()'}
     .row.text-center
       .username
         %span{editable:{text: "user.name"}, 'e-name' => 'name'}
           %h2
             {{ user.name }}
-      - if @user == current_user
-        .buttons
-          %button.edit-btn{ng:{click: "editableForm.$show()", show: "!editableForm.$visible"}, type: 'button'}
-            %span.glyphicon.glyphicon-edit
     .row.text-center.location
       %span.glyphicon.glyphicon-map-marker
       %span{editable:{text: "user.location"}, 'e-name' => 'location'}

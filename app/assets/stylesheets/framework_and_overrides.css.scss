@@ -142,6 +142,11 @@ color: #428BCA;
 .headline {
   margin-top: 20px;
 }
+.edit-profile-block {
+  margin-top: -1%;
+  margin-bottom: 30px;
+  font-size: 15px;
+}
 .location {
   margin-top: 10px;
   font-size: 18px;
@@ -185,14 +190,14 @@ color: #428BCA;
   font-weight: 500;
 }
 .edit-btn {
-  background: none;
-  border: none;
-  font-weight: 700;
+  // background: none;
+  // border: none;
+  // font-weight: 700;
   
 }
 .edit-btn .glyphicon {
- top: -1px;
- font-size: 20px;
+ // top: -1px;
+ // font-size: 20px;
 }
 .skill {
   position: relative;
