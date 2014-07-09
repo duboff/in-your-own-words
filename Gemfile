@@ -26,6 +26,7 @@ gem "searchkick"
 gem 'pluggable_js'
 gem 'wicked'
 gem 'angularjs-rails'
+
 # gem "elasticsearch", git: "git://github.com/elasticsearch/elasticsearch-ruby.git"
 # gem "elasticsearch-model", git: "git://github.com/elasticsearch/elasticsearch-rails.git"
 # gem "elasticsearch-rails", git: "git://github.com/elasticsearch/elasticsearch-rails.git"

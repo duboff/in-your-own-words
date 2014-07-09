@@ -14,5 +14,6 @@
 //= require jquery_ujs
 //= require angular
 //= require xeditable.min
+//= require jasny-bootstrap.min
 //= reqyure turbolinks
 //= require_tree .

@@ -3,9 +3,24 @@
     Upload your CV
   = simple_form_for(@user, url: wizard_path, method: :put, :html => {multipart: true, role: 'form', class: 'form-vertical'}) do |f|
     %p.text-center pdf, docx and doc formats are supported
-    .form-group.text-center.cv-upload
-      = f.file_field :cv
-    .controls
+    .cv-upload   
+      .fileinput.fileinput-new.input-group{data:{provides: "fileinput"}}
+        .form-control{data:{trigger: "fileinput"}}
+          %i.glyphicon.glyphicon-file.fileinput-exists
+          %span.fileinput-filename
+        %span.input-group-addon.btn.btn-default.btn-file
+          %span.fileinput-new
+            Select file
+          %span.fileinput-exists
+            Change
+          = f.file_field :cv
+        =link_to 'Remove','#', class: "input-group-addon btn btn-default fileinput-exists", data: {dismiss: "fileinput"}
+
+
+      
+    .controls.text-center
       = link_to 'Previous step', previous_wizard_path
       = f.button :submit, 'Save profile', :class => 'btn btn-success btn-lg'
       
+
+
