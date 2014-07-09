@@ -12,7 +12,7 @@ class AfterSignupController < ApplicationController
 
   def update
     @user = current_user
-    @user.update! params[:user].permit(:name, :cv)
+    @user.update! params[:user].permit(:cv) if params[:cv]
     render_wizard @user
   end
 
