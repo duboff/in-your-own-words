@@ -48,6 +48,10 @@
   -elsif @user == current_user
     =link_to '/after_signup/confirm_profile', remote: false, class: 'cv-link' do
       %span Upload CV
+.row.cv.text-center
+  =mail_to @user.email, class: 'cv-link' do
+    %span.glyphicon.glyphicon-envelope
+    %span Email this candiate
 
 #players
   %audio#audio-player{src: @user.audio.url, onended: '$("#play-button").click()'}
