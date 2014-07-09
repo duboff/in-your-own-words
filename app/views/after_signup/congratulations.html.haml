@@ -1,0 +1,21 @@
+.congrats-block
+  .row.text-center
+    %h1
+      Congratulations!
+    %p
+      Your profile is complete. Companies looking for people like you will soon get in touch. To speed up the process, you can send your profile via email with this link:
+  .row
+    .input-group
+      %input.form-control#fe_text{type: "text", value: user_url(@user)}
+        %span.input-group-btn
+          %button.btn.btn-default#clip-button{type: 'button', data: {clipboard: {target: "fe_text", text: "Default clipboard text from attribute"}}, title:  "Click me to copy to clipboard."}
+            Copy
+  .row.share-buttons.text-center
+    %p Or share on:
+    =link_to "http://twitter.com/share?url=#{ user_url(@user) }&text=Check out my voice CV", class: "btn btn-lg btn-social-icon btn-twitter" do
+      %i.fa.fa-twitter    
+    =link_to "http://www.linkedin.com/shareArticle?mini=true&url=#{ user_url(@user) }", class: "btn btn-lg btn-social-icon btn-linkedin" do
+      %i.fa.fa-linkedin
+
+
+

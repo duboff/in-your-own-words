@@ -15,5 +15,6 @@
 //= require angular
 //= require xeditable.min
 //= require jasny-bootstrap.min
+//= require zeroclipboard
 //= reqyure turbolinks
 //= require_tree .

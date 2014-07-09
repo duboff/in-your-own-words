@@ -3,7 +3,7 @@ class AfterSignupController < ApplicationController
 
   before_action :authenticate_user!
 
-  steps :record_audio, :confirm_profile
+  steps :record_audio, :confirm_profile, :congratulations
 
   def show
     @user = current_user
