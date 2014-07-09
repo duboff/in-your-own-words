@@ -17,14 +17,13 @@
       %span.glyphicon.glyphicon-record
     =button_to '', class: 'btn-play hidden', id: 'play-button' do
       %span.glyphicon.glyphicon-play
-.row.links.text-center
-  =link_to 'Re-record', '', class: 'upload-link', id: 'cancel-link'
-  =link_to 'Satisfied', '', class: 'upload-link', id: 'upload-link'
 .row.text-center.explainer
   %p Please record a short message for employers. 
   %p We suggest you keep it to under a minute.
 .row.controls.text-center
-  = link_to "Next", next_wizard_path, :class => 'btn btn-primary'
+  .links
+    = link_to 'Re-record', '', class: 'btn btn-info btn-lg', id: 'cancel-link'
+    = link_to "Satisfied", next_wizard_path, :class => 'btn btn-success btn-next btn-lg', id: 'upload-link'
   = link_to 'skip for now' , next_wizard_path
 
     

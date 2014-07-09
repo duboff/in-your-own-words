@@ -72,15 +72,15 @@ window['after_signup#show'] = (data) ->
         startRecording()
     
     # Upload button
-    $("#upload-link").click ->
+    $("#upload-link").click (e) ->
+      # e.preventDefault() 
+      a = this.href
       request = new XMLHttpRequest()
-      # id = window.location.pathname.split("/")[2]
+       # id = window.location.pathname.split("/")[2]
       
-      # request.onreadystatechange = function() {
-      #     if (request.readyState == 4 && request.status == 200) {
-      #         window.location.href = "/video/" + request.responseText;
-      #     }
-      # };
+      request.onreadystatechange = ->
+        if request.readyState == 4 and request.status == 200
+          window.location.href = a;
       request.open "POST", "upload"
       request.setRequestHeader "X-CSRF-Token", $("meta[name=\"csrf-token\"]").attr("content")
       request.send formData
