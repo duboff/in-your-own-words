@@ -50,6 +50,6 @@
       %span Upload CV
 
 #players
-  %audio#audio-player{src: @user.audio.url, preload: "preload", onended: '$("#play-button").click()'}
+  %audio#audio-player{src: @user.audio.url, onended: '$("#play-button").click()'}
 -# %p.positions
 -#   ="Positions: #{@user.position_names.join(' ')}"
