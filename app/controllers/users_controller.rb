@@ -4,7 +4,7 @@ class UsersController < ApplicationController
   # respond_to :json, :html
 
   def index
-    @users = User.all
+    @users = User.all.reverse[0..10]
   end
 
   def search
