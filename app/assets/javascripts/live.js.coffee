@@ -1,4 +1,4 @@
-app = angular.module "app", ["xeditable"]
+app = angular.module "app", ["xeditable", 'mediaPlayer']
 
 # To make Angular play nice with Turbolinks http://stackoverflow.com/questions/14797935/using-angularjs-with-turbolinks
 # $(document).on('ready page:load', ->
@@ -62,6 +62,9 @@ app.controller "SkillCtrl", ($scope, $filter, $http, $window) ->
       $scope.skills.splice(index, 1);
       url = "/users/" + id + "/skills/" + skill_id
       $http.put(url, skill_id)
+
+app.controller 'audioDemo', ($scope) ->
+
 
 $(document).ready ->
   $(".edit-btn").click ->

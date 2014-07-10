@@ -6,14 +6,19 @@
         =text_field_tag :query, params[:query], class: 'form-control', placeholder: 'eg. Ruby', maxlength: "200"
         %span.input-group-btn
           =submit_tag :search, class: 'btn btn-default btn-group'
-.users
+.users.col-md-6.col-md-offset-3
   %ul
-    - @users.reverse[0..10].each do |user|
+    - @users.reverse[0..10].each_with_index do |user, ind|
       %li.index-list
         .row
-          .col-md-6.col-md-offset-3.profile-div
-            = image_tag user.picture_url, class: "user-photo img-rounded img-responsive index-img", width: '100px', height: '100px'
+          .img-container.col-md-4
+            = image_tag user.picture_url, class: "user-photo img-circle img-responsive index-img", width: '100px', height: '100px'
+          .profile-text.col-md-6
             %h3
               = link_to user.name, user
             %h4
               = user.headline
+          .index-page-player.col-md-2{ng: {controller: "audioDemo"}}
+            %audio{"media-player" => "audio#{ind+1}", src: "#{user.audio.url}"}
+            %button.btn-play.index-play{ng: {click: "audio#{ind+1}.playPause()"}}
+              %span.glyphicon{ng: {class: "{ 'glyphicon-pause': audio#{ind+1}.playing, 'glyphicon-play': !audio#{ind+1}.playing }"}}
