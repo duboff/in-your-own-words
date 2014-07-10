@@ -8,22 +8,23 @@
           %span.input-group-btn
             =submit_tag :search, class: 'btn btn-default btn-group'
 - if @users.any?
-  .users.col-md-6.col-md-offset-3
+  .users
     %ul
       - @users.each_with_index do |user, ind|
         %li.index-list
           .row
-            .img-container.col-md-4
+            .img-container.col-xs-4.col-sm-4.col-md-4
               = image_tag user.picture_url, class: "user-photo img-circle img-responsive index-img", width: '100px', height: '100px'
-            .profile-text.col-md-6
+            .profile-text.col-xs-6.col-sm-6.col-md-6
               %h3
                 = link_to user.name, user
               %h4
                 = user.headline
-            .index-page-player.col-md-2{ng: {controller: "audioDemo"}}
+            .index-page-player.col-xs-2.col-sm-2.col-md-2{ng: {controller: "audioDemo"}}
               %audio{"media-player" => "audio#{ind+1}", src: "#{user.audio.url}"}
               %button.btn-play.index-play{ng: {click: "audio#{ind+1}.playPause()"}}
                 %span.glyphicon{ng: {class: "{ 'glyphicon-pause': audio#{ind+1}.playing, 'glyphicon-play': !audio#{ind+1}.playing }"}}
+            .clearfix.visible-xs-block
 - else
   .row
     .col-md-6.col-md-offset-3.sorry.text-center

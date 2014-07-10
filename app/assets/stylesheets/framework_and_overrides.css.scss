@@ -319,16 +319,21 @@ color: #428BCA;
 .profile-text {
   display: inline-block;
   float: left;
-  margin-left: -50px;
+  @media (min-width: 768px) { margin-left: -20px; }
   margin-top: -10px;
 }
 .index-page-player {
   display: inline-block;
   float: left;
-  margin-left: -10px;
+  
   margin-top: -15px;
+  @media (min-width: 768px) { margin-left: 0; }
 }
 
 .btn-toolbar{
   margin-left: 0px;
+}
+
+.index-list {
+  @media (min-width: 768px) { margin-left: 30px; }
 }
