@@ -1,7 +1,7 @@
 .wrapper{ng: {controller: "EditableFormCtrl"}}
   .row.text-center
     .userpic
-      =image_tag @user.picture_url, class: "user-photo img-circle img-responsive img-thumbnail"
+      =image_tag @user.picture_url, class: "user-photo img-circle img-responsive img-thumbnail", width: '200px', height: '200px'
       =button_to '', class: 'btn-play', id: 'play-button' do
         %span.glyphicon.glyphicon-play
   - if @user == current_user
