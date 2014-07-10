@@ -11,6 +11,10 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
     end
   end
 
+  def sign_in_path
+    '/users/sign_up'
+  end
+
   def after_sign_up_path_for(user)
     if user.cv.present?
       user_path(user)
