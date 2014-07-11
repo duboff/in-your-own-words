@@ -20,10 +20,12 @@
                 = link_to user.name, user
               %h4
                 = user.headline
+            
             .index-page-player.col-xs-2.col-sm-2.col-md-2{ng: {controller: "audioDemo"}}
-              %audio{"media-player" => "audio#{ind+1}", src: "#{user.audio.url}"}
-              %button.btn-play.index-play{ng: {click: "audio#{ind+1}.playPause()"}}
-                %span.glyphicon{ng: {class: "{ 'glyphicon-pause': audio#{ind+1}.playing, 'glyphicon-play': !audio#{ind+1}.playing }"}}
+              -if user.audio.present?
+                %audio{"media-player" => "audio#{ind+1}", src: "#{user.audio.url}"}
+                %button.btn-play.index-play{ng: {click: "audio#{ind+1}.playPause()"}}
+                  %span.glyphicon{ng: {class: "{ 'glyphicon-pause': audio#{ind+1}.playing, 'glyphicon-play': !audio#{ind+1}.playing }"}}
             .clearfix.visible-xs-block
 - else
   .row

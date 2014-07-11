@@ -2,8 +2,9 @@
   .row.text-center
     .userpic
       =image_tag @user.picture_url, class: "user-photo img-circle img-responsive img-thumbnail", width: '200px', height: '200px'
-      =button_to '', class: 'btn-play', id: 'play-button' do
-        %span.glyphicon.glyphicon-play
+      -if @user.audio.present?
+        =button_to '', class: 'btn-play', id: 'play-button' do
+          %span.glyphicon.glyphicon-play
   - if @user == current_user
     .row.text-center.headline.edit-profile-block
       %button.edit-btn{ng: {click: "editableForm.$show()", show: "!editableForm.$visible"}, type: 'button', class: 'btn btn-warning btn-lg'}
