@@ -10,7 +10,7 @@
       %button.edit-btn{ng: {click: "editableForm.$show()", show: "!editableForm.$visible"}, type: 'button', class: 'btn btn-warning btn-lg'}
         %span.glyphicon.glyphicon-edit
         Edit Profile
-  %form{'editable-form' => '', name: "editableForm", onaftersave: "saveUser()", onshow: 'hideLocationMarker()'}
+  %form{'editable-form' => '', name: "editableForm", onaftersave: "saveUser()" }
     .row.text-center
       .username
         %span{editable:{text: "user.name"}, 'e-name' => 'name'}
@@ -24,13 +24,16 @@
       %p
         %span{editable:{text: "user.headline"}, 'e-name' => 'headline'}
           {{ user.headline }}
+      %p#email
+        %span.hidden{editable:{text: "user.email"}, 'e-name' => 'email'}
+          {{ user.email }}
     .row.text-center.controls{ng: {show: "editableForm.$visible"}}
       .buttons
         %span
-          %button.btn.btn-success.save-btn{ng: {disabled: "editableForm.$waiting"}, type: 'submit'}
-            Save
           %button.btn.btn-danger.cancel-btn{ng: {disabled: "editableForm.$waiting", click: "editableForm.$cancel()"}, type: 'button'}
             Cancel
+          %button.btn.btn-success.save-btn{ng: {disabled: "editableForm.$waiting"}, type: 'submit'}
+            Save
 .wrapper{ng: {controller: "SkillCtrl"}}
   .row.skills.text-center
     %ul

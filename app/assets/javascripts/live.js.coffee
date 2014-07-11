@@ -20,6 +20,8 @@ app.controller "EditableFormCtrl", ($scope, $filter, $http, $window) ->
     name: 'awesome user'
   }
 
+  unhideEmail = ->
+    $('#email').removeClass('hidden')
   loadUser = ->
     href = $window.location.href.split("/")
     id = href[href.length - 1]
