@@ -72,10 +72,10 @@ window['after_signup#show'] = (data) ->
       if recording
         stopRecording()
       else
-        startRecording()
+        startRecording()      
         setTimeout (->
-          stopRecording()
-        ), 60000
+          stopRecording() if recording
+        ), 60000 # 1 minute maximum for recording
     
     # Upload button
     $("#upload-link").click (e) ->
