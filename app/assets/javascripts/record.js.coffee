@@ -39,6 +39,8 @@ window['after_signup#show'] = (data) ->
       
     # toggle boolean
       recording = true
+      
+
 
     stopRecording = ->
       
@@ -71,6 +73,9 @@ window['after_signup#show'] = (data) ->
         stopRecording()
       else
         startRecording()
+        setTimeout (->
+          stopRecording()
+        ), 60000
     
     # Upload button
     $("#upload-link").click (e) ->
