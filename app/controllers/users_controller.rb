@@ -10,7 +10,8 @@ class UsersController < ApplicationController
   def search
     skill_results = Skill.search(params[:query]).map(&:users).flatten.uniq
     user_results = User.search(params[:query]).to_a
-    @users = (skill_results + user_results).uniq
+    @users = (skill_results + user_results).uniq if params[:query].present?
+    @users = User.all unless params[:query].present?
     render action: "index"
   end
 

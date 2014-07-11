@@ -44,16 +44,15 @@
 
 .row.cv.text-center
   -if @user.cv.present?
-    =link_to @user.cv.url do
-      %span.glyphicon.glyphicon-paperclip 
-      %span Download CV
+    = link_to @user.cv.url, class: 'btn btn-info btn-lg' do
+      %span.glyphicon.glyphicon-file
+      %span Download Full CV
   -elsif @user == current_user
     =link_to '/after_signup/confirm_profile', remote: false, class: 'cv-link' do
       %span Upload CV
-.row.cv.text-center
-  =mail_to @user.email, class: 'cv-link' do
+  =mail_to @user.email, class: 'cv-link btn btn-info btn-lg' do
     %span.glyphicon.glyphicon-envelope
-    %span Email this candiate
+    %span= "Email #{@user.name.split(' ').first}" 
 
 #players
   %audio#audio-player{src: @user.audio.url, onended: '$("#play-button").click()'}
