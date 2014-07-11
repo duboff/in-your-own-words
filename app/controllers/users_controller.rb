@@ -8,7 +8,9 @@ class UsersController < ApplicationController
   end
 
   def search
-    @users = User.search(params[:query])
+    skill_results = Skill.search(params[:query]).map(&:users).flatten.uniq
+    user_results = User.search(params[:query]).to_a
+    @users = (skill_results + user_results).uniq
     render action: "index"
   end
 
@@ -35,6 +37,10 @@ class UsersController < ApplicationController
         format.json { render :json => @user.errors, :status => :unprocessable_entity }
       end
     end
+  end
+
+  def find_users_with_skill(skill)
+
   end
 
 end
