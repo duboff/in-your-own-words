@@ -46,17 +46,21 @@
                 &#10006;      
 
 .row.cv.text-center
-  -if @user.cv.present?
-    = link_to @user.cv.url, class: 'btn btn-info btn-lg' do
+  - if @user == current_user
+    =link_to after_signup_path(:confirm_profile), remote: false, class: 'btn btn-info btn-lg cv-link' do
       %span.glyphicon.glyphicon-file
-      %span Download Full CV
-  -elsif @user == current_user
-    =link_to '/after_signup/confirm_profile', remote: false, class: 'cv-link' do
       %span Upload CV
-  =mail_to @user.email, class: 'cv-link btn btn-info btn-lg' do
-    %span.glyphicon.glyphicon-envelope
-    %span= "Email #{@user.name.split(' ').first}" 
-
+    = link_to after_signup_path(:congratulations), class: 'btn btn-info btn-lg cv-link' do
+      %span.glyphicon.glyphicon-share
+      %span Share profile
+  - else
+    -if @user.cv.present?
+      = link_to @user.cv.url, class: 'cv-link btn btn-info btn-lg' do
+        %span.glyphicon.glyphicon-file
+        %span Download Full CV
+    =mail_to @user.email, class: 'cv-link btn btn-info btn-lg' do
+      %span.glyphicon.glyphicon-envelope
+      %span= "Email #{@user.name.split(' ').first}" 
 #players
   %audio#audio-player{src: @user.audio.url, onended: '$("#play-button").click()'}
 -# %p.positions

@@ -5,10 +5,19 @@
       %span.caret
     %ul.dropdown-menu{role: 'menu'}
       %li
-        = link_to 'Your profile', user_path(current_user)
-        = link_to 'Record new audio', '/after_signup/record_audio'
-        = link_to 'Upload new CV', '/after_signup/confirm_profile'
+        = link_to user_path(current_user) do
+          %span.glyphicon.glyphicon-user
+          %span Your profile
+        = link_to after_signup_path(:record_audio) do
+          %span.glyphicon.glyphicon-record
+          %span Record new audio
+        = link_to after_signup_path(:confirm_profile) do
+          %span.glyphicon.glyphicon-file
+          %span Upload new CV
+        = link_to after_signup_path(:congratulations) do
+          %span.glyphicon.glyphicon-share
+          %span Share profile
   %li= link_to 'Sign out', destroy_user_session_path, :method=>'delete'
 - else
-  %li= link_to 'Sign in', new_user_session_path
+  %li= link_to 'Sign in', new_user_registration_path
   %li= link_to 'Sign up', new_user_registration_path
