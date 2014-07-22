@@ -53,6 +53,9 @@
     = link_to after_signup_path(:congratulations), class: 'btn btn-info btn-lg cv-link' do
       %span.glyphicon.glyphicon-share
       %span Share profile
+    = link_to user_path(@user), method: 'delete', class: 'btn btn-danger btn-lg cv-link' do
+      %span.glyphicon.glyphicon-trash
+      %span Delete profile
   - else
     -if @user.cv.present?
       = link_to @user.cv.url, class: 'cv-link btn btn-info btn-lg' do
