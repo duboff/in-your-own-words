@@ -28,7 +28,7 @@ class AfterSignupController < ApplicationController
         format.json { render :json => @user.errors, :status => :unprocessable_entity }
       end
     end
-    # redirect_to user_path(@user)
+    # redirect_to after_signup_path(:confirm_profile) and return
   end
 
   def finish_wizard_path

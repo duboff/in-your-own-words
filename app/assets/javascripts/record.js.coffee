@@ -1,8 +1,9 @@
 window['after_signup#show'] = (data) ->
   $(document).ready ->
     
-    $('#allowMessage').modal('show')
+    
     if window.location.pathname.split("/")[2] == 'record_audio'
+      $('#allowMessage').modal('show')
       record()
 
   record = ->
@@ -10,6 +11,7 @@ window['after_signup#show'] = (data) ->
     audio_recorder = null
     recording = false
     formData = null
+    audio_player = $('#audio-player')[0]
     
   # record the audio
 
@@ -40,22 +42,17 @@ window['after_signup#show'] = (data) ->
     # toggle boolean
       recording = true
       
-
-
     stopRecording = ->
       
     # stop recorders
-      audio_recorder.stopRecording()
+      audio_recorder.stopRecording (audioURL) ->
+        audio_player.src = audioURL
       
     # set form data
-      formData = new FormData()
-      audio_blob = audio_recorder.getBlob()
-      formData.append "audio", audio_blob
-      
-    # add players
-      audio_player = $('#audio-player')[0]
-      audio_player.src = URL.createObjectURL(audio_blob)
-      
+        formData = new FormData()
+        audio_blob = audio_recorder.getBlob()
+        formData.append "audio", audio_blob
+
     # update UI
       $("#record-button").hide()
       $('#play-button').removeClass('hidden')
@@ -79,14 +76,18 @@ window['after_signup#show'] = (data) ->
     
     # Upload button
     $("#upload-link").click (e) ->
-      # e.preventDefault() 
-      a = this.href
+      e.preventDefault()
       request = new XMLHttpRequest()
        # id = window.location.pathname.split("/")[2]
       
       request.onreadystatechange = ->
         if request.readyState == 4 and request.status == 200
-          window.location.href = a;
+          $('fa-spinner').addClass('hidden')
+          window.location.href = $("#upload-link").attr('href');
+      request.upload.onprogress = ->
+        $('.fa-spinner').removeClass('hidden')
+        $(".links").addClass('hidden')
+
       request.open "POST", "upload"
       request.setRequestHeader "X-CSRF-Token", $("meta[name=\"csrf-token\"]").attr("content")
       request.send formData
@@ -95,7 +96,6 @@ window['after_signup#show'] = (data) ->
       $(".links").hide()
       $(".explainer").show()
       $("#skip-audio-link").show()
-      $("#audio-player")[0].src = null
       $("#record-button").show()
       $('#play-button').addClass('hidden')
       a = $('#record-button').find('.glyphicon-stop')
